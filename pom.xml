@@ -52,5 +52,6 @@
 	</build>
   <modules>
     <module>CRUD</module>
+    <module>Generators</module>
   </modules>
 </project>
