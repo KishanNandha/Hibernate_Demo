@@ -1,5 +1,6 @@
 package com.CRUD;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -27,7 +28,8 @@ public class CRUDApplication implements CommandLineRunner{
 		//retriveEmployee();
 		//updateEmployee();
 		//deleteEmployee();
-		getEmployeeCount();
+		//getEmployeeCount();
+		finderMethodsDemo();
 	}
 
 	private void saveEmployee() {
@@ -66,6 +68,16 @@ public class CRUDApplication implements CommandLineRunner{
 	}
 	private void getEmployeeCount() {
 		System.out.println("Total Records===============>>>>>>>>>>>>>>>" + employeeDao.count());
+	}
+	
+	private void finderMethodsDemo() {
+		System.out.println("findByName===================" + employeeDao.findByName("Dhoni"));
+		System.out.println("findByDept===================" + employeeDao.findByDept("Java"));
+		System.out.println("findByNameAndDept===================" + employeeDao.findByNameAndDept("Dhoni","Java"));
+		System.out.println("findBySalaryGreaterThan===================" + employeeDao.findBySalaryGreaterThan(9000L));
+		System.out.println("findBySalaryBetween===================" + employeeDao.findBySalaryBetween(8000L,10000L));
+		System.out.println("findByNameLike===================" + employeeDao.findByNameLike("Dh"));
+		System.out.println("findByIdIn===================" + employeeDao.findByIdIn(Arrays.asList(1L,2L,3L)));
 	}
 }
 
