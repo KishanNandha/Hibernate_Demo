@@ -2,13 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>AssociationMapping</groupId>
-    <artifactId>AssociationMapping</artifactId>
+    <artifactId>OneToOne</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>OneToOne</artifactId>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>OneToOne_Uni</module>
-  	<module>OneToOne_Bi</module>
-  </modules>
+  <artifactId>OneToOne_Bi</artifactId>
 </project>
