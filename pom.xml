@@ -55,5 +55,6 @@
     <module>Generators</module>
     <module>CriteriaApi</module>
     <module>ComponentMapping</module>
+    <module>AssociationMapping</module>
   </modules>
 </project>
