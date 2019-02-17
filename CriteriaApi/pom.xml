@@ -5,7 +5,6 @@
     <artifactId>Hibernate5Demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>Generators</groupId>
-  <artifactId>Generators</artifactId>
-  <name>Generators</name>
+  <groupId>CriteriaApi</groupId>
+  <artifactId>CriteriaApi</artifactId>
 </project>

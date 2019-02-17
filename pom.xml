@@ -53,5 +53,6 @@
   <modules>
     <module>CRUD</module>
     <module>Generators</module>
+    <module>CriteriaApi</module>
   </modules>
 </project>

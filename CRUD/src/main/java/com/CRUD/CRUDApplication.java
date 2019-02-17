@@ -1,6 +1,7 @@
 package com.CRUD;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -8,6 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 
 import com.CRUD.Entities.Employee;
 import com.CRUD.Repos.EmployeeDao;
@@ -72,12 +78,42 @@ public class CRUDApplication implements CommandLineRunner{
 	
 	private void finderMethodsDemo() {
 		System.out.println("findByName===================" + employeeDao.findByName("Dhoni"));
-		System.out.println("findByDept===================" + employeeDao.findByDept("Java"));
+		//System.out.println("findByDept===================" + employeeDao.findByDept("Java"));
 		System.out.println("findByNameAndDept===================" + employeeDao.findByNameAndDept("Dhoni","Java"));
 		System.out.println("findBySalaryGreaterThan===================" + employeeDao.findBySalaryGreaterThan(9000L));
 		System.out.println("findBySalaryBetween===================" + employeeDao.findBySalaryBetween(8000L,10000L));
 		System.out.println("findByNameLike===================" + employeeDao.findByNameLike("Dh"));
 		System.out.println("findByIdIn===================" + employeeDao.findByIdIn(Arrays.asList(1L,2L,3L)));
+	}
+	
+	private void findAllPaging() {
+		int pageNumber = 1;
+		int pageSize = 10; // number of records per page
+		Pageable pageable = new PageRequest(pageNumber,pageSize);
+		Page<Employee> result = employeeDao.findAll(pageable);
+		result.forEach(p -> System.out.println(p.getName()));
+	}
+	
+	private void findAllPagingAndSorting() {
+		
+		int pageNumber = 1;
+		int pageSize = 10; // number of records per page
+		Sort sort = new Sort(new Sort.Order(Direction.DESC, "name"), new Sort.Order(Direction.DESC, "salary"));
+		
+		Pageable pageable = new PageRequest(pageNumber,pageSize,sort);
+		Page<Employee> result = employeeDao.findAll(pageable);
+		result.forEach(p -> System.out.println(p));
+	}
+	
+	private void paginationAndSortingForFinferMethods() {
+		
+		int pageNumber = 1;
+		int pageSize = 10; // number of records per page
+		Sort sort = new Sort(new Sort.Order(Direction.DESC, "name"), new Sort.Order(Direction.DESC, "salary"));
+		
+		Pageable pageable = new PageRequest(pageNumber,pageSize,sort);
+		List<Employee> result = employeeDao.findByDept("Java", pageable);
+		System.out.println("findByDept===================" + result);
 	}
 }
 
