@@ -56,5 +56,6 @@
     <module>CriteriaApi</module>
     <module>ComponentMapping</module>
     <module>AssociationMapping</module>
+    <module>JPQL</module>
   </modules>
 </project>

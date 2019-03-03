@@ -37,7 +37,8 @@ public class OneToManyBiDemo implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		//saveData();
-		fetchData();
+		//fetchData();
+		fetchData2();
 	}
 
 	public void saveData() {
@@ -56,12 +57,22 @@ public class OneToManyBiDemo implements CommandLineRunner {
 		courseRepo.save(tempCourse2);
 		
 	}
-	
+
 	public void fetchData() {
-	//	Optional<Instructor> optional = instructorRepo.findById(4);
+		// Optional<Instructor> optional = instructorRepo.findById(4);
 		// while lazy loading data we have to cloase session after using data
 		Session session = openSession();
 		Instructor instructor = session.get(Instructor.class, 4);
+		System.out.println(instructor.getCourses());
+		session.close();
+	}
+
+	public void fetchData2() {
+		Instructor instructor = instructorRepo.findById(4).get();
+		//above dao will close session 
+		System.out.println("************************************************************************************");
+		Session session = openSession();
+		instructor = (Instructor) session.merge(instructor);
 		System.out.println(instructor.getCourses());
 		session.close();
 	}
